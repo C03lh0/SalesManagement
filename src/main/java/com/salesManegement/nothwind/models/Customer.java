@@ -40,4 +40,11 @@ public class Customer {
     @Column(name = "Phone")
     private String Phone;
 
+    @Override
+    public String toString() {
+        return "Customer [CustomerID=" + CustomerID + ", CompanyName=" + CompanyName + ", ContactName=" + ContactName
+                + ", ContactTitle=" + ContactTitle + ", Address=" + Address + ", City=" + City + ", PostalCode="
+                + PostalCode + ", CEP=" + CEP + ", Country=" + Country + ", Phone=" + Phone + "]";
+    }
+
 }
