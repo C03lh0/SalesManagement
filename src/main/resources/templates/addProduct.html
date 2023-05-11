@@ -17,13 +17,13 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="customer.html">Lista de Clientes</a>
+                <a class="nav-link" aria-current="page" href="/customer">Lista de Clientes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="order.html">Lista de Compras</a>
+                <a class="nav-link" href="/order">Lista de Compras</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="product.html">Lista de Produtos</a>
+                <a class="nav-link active" href="/product">Lista de Produtos</a>
               </li>
             </ul>
           </div>
@@ -31,39 +31,39 @@
       </nav>
     <main>
         <h1 style="margin-left: 10px; margin-bottom: 40px;">Adicionar Produto</h1>
-        <form style="margin-left: 15px; margin-right: 15px;">  
+        <form action="registerProduct" style="margin-left: 15px; margin-right: 15px;" method="post">  
             <div class="row">
                 <div class="form-group col-sm ">
-                    <label for="form-control">ID do Produto</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="ID do Produto">
+                    <label for="ProductID">ID do Produto</label>
+                    <input type="text" class="form-control" id="ProductID" name="ProductID" placeholder="ID do Produto">
                 </div>
                 <div class="form-group col-sm">
-                    <label for="form-control">Nome do Produto</label>
-                    <input type="text" class="form-control" id="inputPassword4" placeholder="Nome do Produto ">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm">
-                    <label for="form-control">ID Fornecedor</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="ID do fornecedor">
-                </div>
-                <div class="form-group col-sm">
-                    <label for="form-control">Categoria</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="Categoria">
+                    <label for="ProductName">Nome do Produto</label>
+                    <input type="text" class="form-control" id="ProductName" name="ProductName" placeholder="Nome do Produto ">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm">
-                    <label for="form-control">Qtd. por unid.</label>
-                    <input type="text" class="form-control" id="inputAddress">
+                    <label for="SupplierID">ID Fornecedor</label>
+                    <input type="text" class="form-control" id="SupplierID" name="SupplierID" placeholder="ID do fornecedor">
                 </div>
                 <div class="form-group col-sm">
-                    <label for="form-control">Preço por unid.</label>
-                    <input type="text" class="form-control" id="inputAddress">
+                    <label for="CategoryID">Categoria</label>
+                    <input type="text" class="form-control" id="CategoryID" name="CategoryID" placeholder="Categoria">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm">
+                    <label for="QuantityPerUnit">Qtd. por unid.</label>
+                    <input type="text" class="form-control" id="QuantityPerUnit" name="QuantityPerUnit">
                 </div>
                 <div class="form-group col-sm">
-                    <label for="form-control">Qtd. em estoque</label>
-                    <input type="text" class="form-control" id="inputAddress">
+                    <label for="QuantityPerUnit">Preço por unid.</label>
+                    <input type="text" class="form-control" id="QuantityPerUnit" name="QuantityPerUnit">
+                </div>
+                <div class="form-group col-sm">
+                    <label for="UnitPrice">Qtd. em estoque</label>
+                    <input type="text" class="form-control" id="UnitPrice" name="UnitPrice">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary" style="margin-top: 20px;">salvar</button>

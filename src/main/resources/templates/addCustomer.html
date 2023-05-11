@@ -17,13 +17,13 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="customer.html">Lista de Clientes</a>
+                <a class="nav-link active" aria-current="page" href="/customer">Lista de Clientes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="order.html">Lista de Compras</a>
+                <a class="nav-link" href="/order">Lista de Compras</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="product.html">Lista de Produtos</a>
+                <a class="nav-link" href="/product">Lista de Produtos</a>
               </li>
             </ul>
           </div>
@@ -31,58 +31,58 @@
       </nav>
     <main>
         <h1 style="margin-left: 10px; margin-bottom: 40px;">Adicionar Cliente</h1>
-        <form action="register" style="margin-left: 15px; margin-right: 15px;">  
+        <form action="registerCustomer" style="margin-left: 15px; margin-right: 15px;" method="post">  
             <div class="row">
                 <div class="form-group col-sm ">
-                    <label for="form-control">ID do Cliente</label>
-                    <input name="CustomerID" type="text" class="form-control" id="inputEmail4" placeholder="ID do Cliente">
+                    <label for="CustomerID">ID do Cliente</label>
+                    <input name="CustomerID" type="text" class="form-control" placeholder="ID do Cliente">
                 </div>
                 <div class="form-group col-sm">
-                    <label for="form-control">Nome da Empresa</label>
+                    <label for="CompanyName">Nome da Empresa</label>
                     <input name="CompanyName" type="text" class="form-control" id="inputPassword4" placeholder="Nome da Empresa">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm">
-                    <label for="form-control">Nome para Contato</label>
+                    <label for="ContactName">Nome para Contato</label>
                     <input name="ContactName" type="text" class="form-control" id="inputAddress" placeholder="Nome para Contato">
                 </div>
                 <div class="form-group col-sm">
-                    <label for="form-control">Cargo do Contato</label>
+                    <label for="ContactTitle">Cargo do Contato</label>
                     <input name="ContactTitle" type="text" class="form-control" id="inputAddress" placeholder="Cargo do Contato">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-sm">
-                    <label for="inputAddress">Endereço</label>
+                    <label for="Address">Endereço</label>
                     <input name="Address" type="text" class="form-control" id="inputAddress" placeholder="Rua dos Bobos, nº 0">
                 </div>
                 <div class="form-group col-sm">
-                    <label for="inputCity">Cidade</label>
+                    <label for="City">Cidade</label>
                     <input name="City" type="text" class="form-control" id="inputCity" placeholder="Cidade">
                 </div>
                 <div class="form-group col-sm">
-                    <label for="inputEstado">Estado</label>
+                    <label for="PostalCode">Estado</label>
                     <input name="PostalCode" type="text" class="form-control" id="inputCity" placeholder="Estado">
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="inputCEP">CEP</label>
+                    <label for="CEP">CEP</label>
                     <input name="CEP" type="text" class="form-control" id="inputCEP">
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="inputCountry">País</label>
+                    <label for="Country">País</label>
                     <input name="Country" type="text" class="form-control" id="inputCEP">
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="inputCountry">Telefone</label>
+                    <label for="Phone">Telefone</label>
                     <input type="Phone" class="form-control" id="inputCEP">
                 </div>
             </div>
             <div class="form-group">
                 <div class="form-check"></div>
             </div>
-            <button type="submit" class="btn btn-primary" style="margin-top: 20px;">salvar</button>
+            <button type="submit" class="btn btn-primary" style="margin-top: 20px;" onclick="register">salvar</button>
         </form>
     </main>
     <script src="main.js"></script>
