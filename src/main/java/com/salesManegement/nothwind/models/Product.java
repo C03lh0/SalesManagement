@@ -9,12 +9,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name= "Product")
+@Table(name= "Products")
 public class Product {
 
     @Id
     @Column(name = "ProductID")
-    private int ProductID;
+    private String ProductID;
 
     @Column(name = "ProductName")
     private String ProductName;
