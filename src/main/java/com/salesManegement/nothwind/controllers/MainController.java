@@ -32,10 +32,7 @@ public class MainController {
         return "addCustomer";
     }
 
-    @GetMapping("/addOrder")
-    public String showAddOrder() {
-        return "addOrder";
-    }
+    
     @GetMapping("/addProduct")
     public String showAddProduct() {
         return "addProduct";
@@ -86,6 +83,14 @@ public class MainController {
     @GetMapping("/product")
     public ModelAndView showProductsList() {
         ModelAndView mv = new ModelAndView("product");
+        Iterable<Product> productsList = productRepository.findAll();
+        mv.addObject("products", productsList);
+        return mv;
+    }
+
+    @GetMapping("/addOrder")
+    public ModelAndView showAddOrder() {
+        ModelAndView mv = new ModelAndView("addOrder");
         Iterable<Product> productsList = productRepository.findAll();
         mv.addObject("products", productsList);
         return mv;
