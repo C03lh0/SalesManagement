@@ -47,7 +47,7 @@
       </thead>
       <tbody>
         <tr th:each="order : ${orders}">
-          <td th:text="${order.OrderID}"></td>
+          <td><a th:href="${(#mvc.url('MC#orderDetails').arg(0, order.OrderID)).build()}"><span th:text="${order.OrderID}"></span></a></span></td>
           <td th:text="${order.CustomerID}"></td>
           <td th:text="${order.OrderDate}"></td>
           <td th:text="${order.Freight}"></td>

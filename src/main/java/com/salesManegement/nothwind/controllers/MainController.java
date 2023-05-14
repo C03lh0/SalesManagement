@@ -1,5 +1,8 @@
 package com.salesManegement.nothwind.controllers;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,8 +57,15 @@ public class MainController {
     public String registerOrder(@ModelAttribute Order order) {
         this.orderRepository.save(order);
         System.out.println(order);
-        return "redirect:/order";
+        return "redirect:/"+ order.OrderID;
     }
+
+    // @PostMapping("/registerProductsInOrder")
+    // public String registerProductsInOrder(@ModelAttribute Product product) {
+    //     this.orderRepository.save(product);
+    //     System.out.println(order);
+    //     return "redirect:/order";
+    // }
 
     @PostMapping("/registerProduct")
     public String registerProduct(@ModelAttribute Product product) {
@@ -95,14 +105,29 @@ public class MainController {
         mv.addObject("products", productsList);
         return mv;
     }
+
+    @GetMapping("/{id}")
+    public ModelAndView orderDetails(@PathVariable("id") String id) {
+        Optional<Order> optionalOrder = orderRepository.findById(id);
+		ModelAndView mv = new ModelAndView("orderDetails");
+        Iterable<Product> productsList = productRepository.findAll();
+        
+        if (optionalOrder.isPresent()) {
+            mv.addObject("orders", optionalOrder.get());
+            mv.addObject("products", productsList);
+            return mv;
+        } else {
+            throw new NoSuchElementException("Customer not found with ID: " + id);
+        }
+    }
     
     //TO-DO
-    @GetMapping(value="/{id}")
-	public ModelAndView detalhesEvento(@PathVariable("id") long id){
-		//Customer customer = customerRepository.findByID(id);
-		ModelAndView mv = new ModelAndView("customerDetails");
-		//mv.addObject("customer", customer);
+    // @GetMapping(value="/{id}")
+	// public ModelAndView detalhesEvento(@PathVariable("id") long id){
+	// 	//Customer customer = customerRepository.findByID(id);
+	// 	ModelAndView mv = new ModelAndView("customerDetails");
+	// 	//mv.addObject("customer", customer);
 		
-		return mv;
-	}
+	// 	return mv;
+	// }
 }

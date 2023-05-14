@@ -4,6 +4,7 @@ package com.salesManegement.nothwind.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -33,6 +34,16 @@ public class Product {
 
     @Column(name = "UnitsInStock")
     private int UnitsInStock;
-    
+
+    @ManyToOne
+    private Order order;
+
+    public Order getOrder(){
+        return this.order;
+    }
+
+    public void setOrder(Order order){
+        this.order = order;
+    }
 }
 
