@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.salesManegement.nothwind.models.Customer;
 import com.salesManegement.nothwind.models.Order;
 import com.salesManegement.nothwind.models.Product;
@@ -47,15 +49,16 @@ public class MainController {
         return "product";
     }
 
-    @GetMapping("/customer")
-    public String showCustomer() {
-        return "customer";
-    }
+    // @GetMapping("/customers")
+    // public String showCustomer() {
+    //     return "customer";
+    // }
 
     @GetMapping("/")
-    public String index() {
-        return "customer";
+    public void index() {
+        showListCustomer();
     }
+
     @PostMapping("/registerCustomer")
     public String registerCustomer(@ModelAttribute Customer customer) {
         this.customerRepository.save(customer);
@@ -75,6 +78,14 @@ public class MainController {
         this.productRepository.save(product);
         System.out.println(product);
         return "product";
+    }
+
+    @GetMapping("/customer")
+    public ModelAndView showListCustomer() {
+        ModelAndView mv = new ModelAndView("customer");
+        Iterable<Customer> customersList = customerRepository.findAll();
+        mv.addObject("customers", customersList);
+        return mv;
     }
     
 }
