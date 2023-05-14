@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,52 +41,63 @@ public class MainController {
         return "addProduct";
     }
 
-    @GetMapping("/order")
-    public String showOrder() {
-        return "order";
-    }
-    @GetMapping("/product")
-    public String showProduct() {
-        return "product";
-    }
-
-    // @GetMapping("/customers")
-    // public String showCustomer() {
-    //     return "customer";
-    // }
-
     @GetMapping("/")
-    public void index() {
-        showListCustomer();
+    public String index() {
+        return "redirect:/customer";
     }
 
     @PostMapping("/registerCustomer")
     public String registerCustomer(@ModelAttribute Customer customer) {
         this.customerRepository.save(customer);
         System.out.println(customer);
-        return "customer";
+        return "redirect:/customer";
     }
 
     @PostMapping("/registerOrder")
     public String registerOrder(@ModelAttribute Order order) {
         this.orderRepository.save(order);
         System.out.println(order);
-        return "order";
+        return "redirect:/order";
     }
 
     @PostMapping("/registerProduct")
     public String registerProduct(@ModelAttribute Product product) {
         this.productRepository.save(product);
         System.out.println(product);
-        return "product";
+        return "redirect:/product";
     }
 
     @GetMapping("/customer")
-    public ModelAndView showListCustomer() {
+    public ModelAndView showCustomersList() {
         ModelAndView mv = new ModelAndView("customer");
         Iterable<Customer> customersList = customerRepository.findAll();
         mv.addObject("customers", customersList);
         return mv;
     }
+
+    @GetMapping("/order")
+    public ModelAndView showOrdersList() {
+        ModelAndView mv = new ModelAndView("order");
+        Iterable<Order> ordersList = orderRepository.findAll();
+        mv.addObject("orders", ordersList);
+        return mv;
+    }
+
+    @GetMapping("/product")
+    public ModelAndView showProductsList() {
+        ModelAndView mv = new ModelAndView("product");
+        Iterable<Product> productsList = productRepository.findAll();
+        mv.addObject("products", productsList);
+        return mv;
+    }
     
+    //TO-DO
+    @GetMapping(value="/{id}")
+	public ModelAndView detalhesEvento(@PathVariable("id") long id){
+		//Customer customer = customerRepository.findByID(id);
+		ModelAndView mv = new ModelAndView("customerDetails");
+		//mv.addObject("customer", customer);
+		
+		return mv;
+	}
 }

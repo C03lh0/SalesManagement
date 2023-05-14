@@ -5,5 +5,5 @@ import com.salesManegement.nothwind.models.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, String> {
-    
+    //Customer findByID(long id);
 }
