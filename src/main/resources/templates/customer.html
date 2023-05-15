@@ -50,11 +50,12 @@
         </thead>
         <tbody>
           <tr th:each="customer : ${customers}">
-            <td th:text="${customer.CustomerID}"></td>
+            <td><a th:href="${(#mvc.url('MC#customerDetails').arg(0, customer.CustomerID)).build()}"><span th:text="${customer.CustomerID}"></span></a></span></td>
             <td th:text="${customer.CompanyName}"></td>
             <td th:text="${customer.ContactName}"></td>
             <td th:text="${customer.City}"></td>
             <td th:text="${customer.Phone}"></td>
+            <td th:text="${customer.Phone}" ></td>
           </tr>
         </tbody>
       </table>

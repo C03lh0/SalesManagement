@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -123,6 +125,24 @@ public class MainController {
             throw new NoSuchElementException("Customer not found with ID: " + id);
         }
     }
+    @GetMapping("/customer/{CustomerID}")
+    public ModelAndView customerDetails(@PathVariable("CustomerID") String id) {
+        Optional<Customer> optionalOrder = customerRepository.findById(id);
+		ModelAndView mv = new ModelAndView("updateCustomer");
+        
+        if (optionalOrder.isPresent()) {
+            mv.addObject("customers", optionalOrder.get());
+            return mv;
+        } else {
+            throw new NoSuchElementException("Customer not found with ID: " + id);
+        }
+    }
+
+    @RequestMapping(value = "/removeCustomer/{CustomerID}", method = RequestMethod.GET)
+    public String removeCustomer(@PathVariable("CustomerID") String id) {
+        customerRepository.deleteById(id);
+        return "redirect:/customer";
+    }
 
     @PostMapping("/{id}")
     public String registerProductsInOrder(@PathVariable("id") String orderId, @RequestParam("options") Long opcao) {
@@ -143,14 +163,4 @@ public class MainController {
     
         return "redirect:/{id}";
     }
-    
-    //TO-DO
-    // @GetMapping(value="/{id}")
-	// public ModelAndView detalhesEvento(@PathVariable("id") long id){
-	// 	//Customer customer = customerRepository.findByID(id);
-	// 	ModelAndView mv = new ModelAndView("customerDetails");
-	// 	//mv.addObject("customer", customer);
-		
-	// 	return mv;
-	// }
 }
