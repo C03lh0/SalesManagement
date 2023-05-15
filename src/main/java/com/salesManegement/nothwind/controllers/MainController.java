@@ -135,6 +135,7 @@ public class MainController {
             if(optionalOrder.isPresent()){
                 Product product = optionalProduct.get();
                 product.setOrder(order);
+                productRepository.save(product);
             }
         } else {
             throw new NoSuchElementException("Customer not found with ID: " + orderId);
