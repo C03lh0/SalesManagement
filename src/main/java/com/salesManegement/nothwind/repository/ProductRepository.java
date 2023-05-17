@@ -7,5 +7,5 @@ import com.salesManegement.nothwind.models.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
-    Iterable<Product> findByOrder(Order order);
+    //Iterable<Product> findByOrder(Order order);
 }

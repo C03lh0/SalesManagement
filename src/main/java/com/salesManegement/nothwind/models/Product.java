@@ -35,15 +35,15 @@ public class Product {
     @Column(name = "UnitsInStock")
     private int UnitsInStock;
 
-    @ManyToOne
-    private Order order;
+    // @ManyToOne
+    // private Order order;
 
-    public Order getOrder(){
-        return this.order;
-    }
+    // public Order getOrder(){
+    //     return this.order;
+    // }
 
-    public void setOrder(Order order){
-        this.order = order;
-    }
+    // public void setOrder(Order order){
+    //     this.order = order;
+    // }
 }
 

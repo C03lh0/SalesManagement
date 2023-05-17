@@ -30,11 +30,11 @@ public class Customer {
     @Column(name = "City")
     private String City;
 
+    @Column(name = "Region")
+    private String Region;
+
     @Column(name = "PostalCode")
     private String PostalCode;
-
-    @Column(name = "CEP")
-    private String CEP;
 
     @Column(name = "Country")
     private String Country;
@@ -42,11 +42,14 @@ public class Customer {
     @Column(name = "Phone")
     private String Phone;
 
+    @Column(name = "Fax")
+    private String Fax;
+
     @Override
     public String toString() {
         return "Customer [CustomerID=" + CustomerID + ", CompanyName=" + CompanyName + ", ContactName=" + ContactName
-                + ", ContactTitle=" + ContactTitle + ", Address=" + Address + ", City=" + City + ", PostalCode="
-                + PostalCode + ", CEP=" + CEP + ", Country=" + Country + ", Phone=" + Phone + "]";
+                + ", ContactTitle=" + ContactTitle + ", Address=" + Address + ", City=" + City + ", Region="
+                + Region + ", PostalCode=" + PostalCode + ", Country=" + Country + ", Phone=" + Phone + "]";
     }
 
 }

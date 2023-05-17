@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -112,7 +111,7 @@ public class MainController {
         return mv;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("order/{id}")
     public ModelAndView orderDetails(@PathVariable("id") String id) {
         Optional<Order> optionalOrder = orderRepository.findById(id);
 		ModelAndView mv = new ModelAndView("orderDetails");
@@ -121,8 +120,8 @@ public class MainController {
         if (optionalOrder.isPresent()) {
             mv.addObject("orders", optionalOrder.get());
             mv.addObject("products", productsList);
-            Iterable<Product> addedProductsList = productRepository.findByOrder(optionalOrder.get());
-            mv.addObject("addedProducts", addedProductsList);
+            //Iterable<Product> addedProductsList = productRepository.findByOrder(optionalOrder.get());
+            //mv.addObject("addedProducts", addedProductsList);
             return mv;
         } else {
             throw new NoSuchElementException("Customer not found with ID: " + id);
@@ -163,7 +162,7 @@ public class MainController {
     
             if(optionalOrder.isPresent()){
                 Product product = optionalProduct.get();
-                product.setOrder(order);
+                //product.setOrder(order);
                 productRepository.save(product);
             }
         } else {

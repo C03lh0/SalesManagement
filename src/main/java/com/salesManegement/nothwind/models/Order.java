@@ -1,11 +1,8 @@
 package com.salesManegement.nothwind.models;
 import java.sql.Date;
 
-// import org.hibernate.mapping.List;
-
-// import com.fasterxml.jackson.annotation.ObjectIdGenerators.StringIdGenerator;
-
 import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -31,8 +28,8 @@ public class Order {
     @Column(name = "Freight")
     private double Freight;
 
-    @OneToMany
-    private List<Product> productsList;
+    // @OneToMany
+    // private List<Product> productsList;
     
 }
 
