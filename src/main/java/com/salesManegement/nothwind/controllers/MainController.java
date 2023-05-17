@@ -63,18 +63,21 @@ public class MainController {
         return "redirect:/"+ order.OrderID;
     }
 
-    // @PostMapping("/registerProductsInOrder")
-    // public String registerProductsInOrder(@ModelAttribute Product product) {
-    //     this.orderRepository.save(product);
-    //     System.out.println(order);
-    //     return "redirect:/order";
-    // }
-
     @PostMapping("/registerProduct")
     public String registerProduct(@ModelAttribute Product product) {
         this.productRepository.save(product);
         System.out.println(product);
         return "redirect:/product";
+    }
+
+    @PostMapping("customer/updateCustomer")
+    public String updateCustomer(@ModelAttribute Customer customer) {
+        if (this.customerRepository.findById(customer.getCustomerID()).isPresent()) {
+            this.customerRepository.deleteById(customer.getCustomerID());
+        }
+        this.customerRepository.save(customer);
+        System.out.println(customer);
+        return "redirect:/customer";
     }
 
     @GetMapping("/customer")
@@ -138,9 +141,15 @@ public class MainController {
         }
     }
 
-    @RequestMapping(value = "/removeCustomer/{CustomerID}", method = RequestMethod.GET)
-    public String removeCustomer(@PathVariable("CustomerID") String id) {
-        customerRepository.deleteById(id);
+    @RequestMapping("/deleteCustomer/{id}")
+    public String deleteCustomer(@PathVariable("id") String id) {
+        Optional<Customer> optionalOrder = customerRepository.findById(id);
+
+        if (optionalOrder.isPresent()) {
+            customerRepository.delete(optionalOrder.get());
+        } else {
+            throw new NoSuchElementException("Customer not found with ID: " + id);
+        }
         return "redirect:/customer";
     }
 
