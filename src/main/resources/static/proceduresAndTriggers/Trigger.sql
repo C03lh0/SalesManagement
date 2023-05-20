@@ -1,17 +1,20 @@
-CREATE TRIGGER ProductDoesNotExistAnymore 
-ON Products
-FOR UPDATE
+CREATE TRIGGER trgCustomerInsert
+ON Customers
+AFTER INSERT
 AS
 BEGIN
-    DECLARE @DELETE_PRODUCT_ID INT,
-            @PRODUCT_QUANTITY INT
+    DECLARE @City NVARCHAR(100);
+    DECLARE @Count INT;
 
-    SELECT @DELETE_PRODUCT_ID =  ProductID, @PRODUCT_QUANTITY = UnitsInStock FROM inserted;
+    SELECT @City = City FROM inserted;
 
-    IF @PRODUCT_QUANTITY = 0 
-        BEGIN
-            DELETE FROM INVENTORIES WHERE inventory_product_ID = @DELETE_PRODUCT_ID;
-        END
-END
+    SELECT @Count = COUNT(*) FROM Customers WHERE City = @City;
+
+    IF @Count >= 10
+    BEGIN
+        RAISERROR('Não é possível inserir o cliente. Limite máximo de clientes da mesma cidade atingido.', 16, 1);
+        ROLLBACK;
+    END
+END;
 
 

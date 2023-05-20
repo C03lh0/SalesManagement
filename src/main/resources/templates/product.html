@@ -49,7 +49,6 @@
         </thead>
         <tbody>
           <tr th:each="product : ${products}">
-            <td th:text="${product.ProductID}"></td>
             <td><a th:href="${(#mvc.url('MC#productDetails').arg(0, product.ProductID)).build()}"><span th:text="${product.ProductID}"></span></a></span></td>
             <td th:text="${product.ProductName}"></td>
             <td th:text="${product.SupplierID}"></td>

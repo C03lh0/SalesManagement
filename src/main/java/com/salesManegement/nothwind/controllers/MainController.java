@@ -54,8 +54,12 @@ public class MainController {
 
     @PostMapping("/registerCustomer")
     public String registerCustomer(@ModelAttribute Customer customer) {
-        this.customerRepository.save(customer);
-        System.out.println(customer);
+        try {
+            this.customerRepository.save(customer);
+        } catch (Exception e) {
+            System.out.println(e);
+            return "redirect:/customer";
+        }
         return "redirect:/customer";
     }
 
@@ -86,7 +90,7 @@ public class MainController {
     @PostMapping("product/updateProduct")
     public String updateProduct(@ModelAttribute Product product) {
         if (this.productRepository.findById(product.getProductID()).isPresent()) {
-            this.productRepository.deleteById(product.getProductID());
+            this.productRepository.delete(product);
         }
         this.productRepository.save(product);
         System.out.println(product);
