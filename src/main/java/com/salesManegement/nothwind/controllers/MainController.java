@@ -1,5 +1,6 @@
 package com.salesManegement.nothwind.controllers;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -19,7 +20,7 @@ import com.salesManegement.nothwind.models.Product;
 import com.salesManegement.nothwind.repository.CustomerRepository;
 import com.salesManegement.nothwind.repository.OrderRepository;
 import com.salesManegement.nothwind.repository.ProductRepository;
-
+import com.salesManegement.nothwind.repository.ProductService;
 @Controller
 public class MainController {
     
@@ -31,6 +32,9 @@ public class MainController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("/addCustomer")
     public String showAddCustomer() {
@@ -90,7 +94,7 @@ public class MainController {
     @GetMapping("/selectThe5ProductsWithLessQuantity")
     public ModelAndView show5ProductsWithLessQuantity() {
         ModelAndView mv = new ModelAndView("selectThe5ProductsWithLessQuantity");
-        Iterable<Product> customersList = productRepository.execSelectThe5ProductsWithLessQuantityProcedure();
+        List<Product> customersList = productService.getProductsFromStoredProcedure();
         mv.addObject("products", customersList);
         return mv;
     }

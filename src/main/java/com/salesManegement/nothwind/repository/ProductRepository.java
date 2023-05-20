@@ -11,5 +11,5 @@ import com.salesManegement.nothwind.models.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
     @Procedure(name = "SelectThe5ProductsWithLessQuantity")
-    List<Product> execSelectThe5ProductsWithLessQuantityProcedure();
+    List<Product> selectThe5ProductsWithLessQuantity();
 }
