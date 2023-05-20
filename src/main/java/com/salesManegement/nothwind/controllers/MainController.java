@@ -83,6 +83,16 @@ public class MainController {
         return "redirect:/customer";
     }
 
+    @PostMapping("product/updateProduct")
+    public String updateProduct(@ModelAttribute Product product) {
+        if (this.productRepository.findById(product.getProductID()).isPresent()) {
+            this.productRepository.deleteById(product.getProductID());
+        }
+        this.productRepository.save(product);
+        System.out.println(product);
+        return "redirect:/customer";
+    }
+
     @GetMapping("/customer")
     public ModelAndView showCustomersList() {
         ModelAndView mv = new ModelAndView("customer");
@@ -149,6 +159,19 @@ public class MainController {
             return mv;
         } else {
             throw new NoSuchElementException("Customer not found with ID: " + id);
+        }
+    }
+
+    @GetMapping("/product/{ProductID}")
+    public ModelAndView productDetails(@PathVariable("ProductID") String id) {
+        Optional<Product> optionalOrder = productRepository.findById(id);
+		ModelAndView mv = new ModelAndView("updateProduct");
+        
+        if (optionalOrder.isPresent()) {
+            mv.addObject("products", optionalOrder.get());
+            return mv;
+        } else {
+            throw new NoSuchElementException("Product not found with ID: " + id);
         }
     }
 
