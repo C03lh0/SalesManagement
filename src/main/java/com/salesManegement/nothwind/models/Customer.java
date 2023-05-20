@@ -1,57 +1,55 @@
 package com.salesManegement.nothwind.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name= "Customers")
 public class Customer {
-    private String CustomerID;
-    private String CompanyName;
-    private String ContactName;
-    private String ContactTitle;
-    private String Address;
-    private String City;
-    private String PostalCode;
-    private String CEP;
-    private String Country;
-    private String Phone;
     
-    public String getContactTitle() {
-        return ContactTitle;
-    }
-    public void setContactTitle(String contactTitle) {
-        ContactTitle = contactTitle;
-    }
-    public String getCustomerID() {
-        return CustomerID;
-    }
-    public void setCustomerID(String customerID) {
-        CustomerID = customerID;
-    }
-    public String getCompanyName() {
-        return CompanyName;
-    }
-    public void setCompanyName(String companyName) {
-        CompanyName = companyName;
-    }
-    public String getContactName() {
-        return ContactName;
-    }
-    public void setContactName(String contactName) {
-        ContactName = contactName;
-    }
-    public String getCity() {
-        return City;
-    }
-    public void setCity(String city) {
-        City = city;
-    }
-    public String getPhone() {
-        return Phone;
-    }
-    public void setPhone(String phone) {
-        Phone = phone;
-    }
+    @Id
+    @Column(name = "CustomerID")
+    private String CustomerID;
+
+    @Column(name = "CompanyName")
+    private String CompanyName;
+
+    @Column(name = "ContactName")
+    private String ContactName;
+
+    @Column(name = "ContactTitle")
+    private String ContactTitle;
+
+    @Column(name = "Address")
+    private String Address;
+
+    @Column(name = "City")
+    private String City;
+
+    @Column(name = "Region")
+    private String Region;
+
+    @Column(name = "PostalCode")
+    private String PostalCode;
+
+    @Column(name = "Country")
+    private String Country;
+
+    @Column(name = "Phone")
+    private String Phone;
+
+    @Column(name = "Fax")
+    private String Fax;
 
     @Override
     public String toString() {
         return "Customer [CustomerID=" + CustomerID + ", CompanyName=" + CompanyName + ", ContactName=" + ContactName
-                + ", City=" + City + ", Phone=" + Phone + "]";
+                + ", ContactTitle=" + ContactTitle + ", Address=" + Address + ", City=" + City + ", Region="
+                + Region + ", PostalCode=" + PostalCode + ", Country=" + Country + ", Phone=" + Phone + "]";
     }
+
 }
