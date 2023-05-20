@@ -87,6 +87,14 @@ public class MainController {
         return mv;
     }
 
+    @GetMapping("/selectThe5ProductsWithLessQuantity")
+    public ModelAndView show5ProductsWithLessQuantity() {
+        ModelAndView mv = new ModelAndView("selectThe5ProductsWithLessQuantity");
+        Iterable<Product> customersList = productRepository.execSelectThe5ProductsWithLessQuantityProcedure();
+        mv.addObject("products", customersList);
+        return mv;
+    }
+
     @GetMapping("/order")
     public ModelAndView showOrdersList() {
         ModelAndView mv = new ModelAndView("order");

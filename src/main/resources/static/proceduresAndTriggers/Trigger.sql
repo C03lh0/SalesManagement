@@ -1,0 +1,17 @@
+CREATE TRIGGER ProductDoesNotExistAnymore 
+ON Products
+FOR UPDATE
+AS
+BEGIN
+    DECLARE @DELETE_PRODUCT_ID INT,
+            @PRODUCT_QUANTITY INT
+
+    SELECT @DELETE_PRODUCT_ID =  ProductID, @PRODUCT_QUANTITY = UnitsInStock FROM inserted;
+
+    IF @PRODUCT_QUANTITY = 0 
+        BEGIN
+            DELETE FROM INVENTORIES WHERE inventory_product_ID = @DELETE_PRODUCT_ID;
+        END
+END
+
+
